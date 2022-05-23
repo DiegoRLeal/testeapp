@@ -1,0 +1,18 @@
+<div class="row justify-content-center">
+  <div class="col-md-6 mb-5">
+<%= simple_form_for(@page) do |f| %>
+  <%= f.input :teacher, label: "Teacher" %>
+  <%= f.input :branch, label: "Branch", collection: ['BF', 'BG', 'BOL', 'CG', 'CH', 'CP', 'CT', 'CX', 'DT', 'FG', 'IG', 'IP', 'IT', 'MD', 'MR', 'NI', 'NL', 'NT', 'PO', 'RC', 'TJ', 'TQ', 'VP', 'VQ'] %>
+  <%= f.input :level, label: "Level", collection: ['CANDY', 'POPCORN', 'PRE-K1', 'PRE-K2', 'PRE-K3', 'K1', 'K2', 'J1A', 'J1B', 'J2A', 'J2B', 'J3', 'J4', 'J5', 'J6', 'J7', 'J8', 'J9', 'J10', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9', 'B10', 'CONV'] %>
+  <%= f.input :frequency, collection: ['Mon - Wed', 'Tue - Thu', 'Fridays', 'Saturdays', '1x', '2x', '3x', '4x', '5x'] %>
+  <%= f.input :comments, label: "Comments" %>
+  <%= f.input :photos, label: "Video", as: :file, input_html: { multiple: true } %>
+  <%= f.submit %>
+<% end %>
+</div>
+<hr>
+
+  <div class="container mt-4">
+    <%= link_to "Back", pages_path, class:"btn btn-secondary" %>
+  </div>
+</div>

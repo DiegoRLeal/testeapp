@@ -1,0 +1,35 @@
+<div class="container mt-4 text-left">
+  <div class="row">
+    <div class="col-sm-11 well">
+      <div class="well">
+        <% @page.photos.each do |photo| %>
+          <%= cl_video_tag photo.key, height: 300, width: 400, crop: :fill, controls: '' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+    <div class="row mt-5">
+      <div class="col-sm-11">
+        <div class="well default text-left">
+            <h4><strong>Teacher:</strong> <%= @page.teacher %></h4>
+          </div>
+        </div>
+      </div>
+
+
+    <div class="row">
+        <div class="col-sm-11">
+          <div class="well default text-left">
+            <h5><strong>Branch:</strong> <%= @page.branch %></h5>
+            <h5><strong>Level:</strong> <%= @page.level %></h5>
+            <h5><strong>Frequency:</strong> <%= @page.frequency %></h5>
+            <h5><strong>Comments:</strong> <%= @page.comments %></h5>
+          </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+  <%= link_to "Back", pages_path, class:"btn btn-secondary" %>
+</div>

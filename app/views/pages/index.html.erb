@@ -1,0 +1,84 @@
+<div class="container mt-5">
+    <h1>All footages</h1>
+    <p></p>
+
+    <div class="container mt-5 mb-5">
+      <%= link_to "Create", new_page_path, class:"btn btn-primary" %>
+     </div>
+    <div class="container mb-4">
+      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for teachers">
+    </div>
+
+    <script>
+    function myFunction() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
+
+    <table class="table" id="myTable">
+      <tr class="header">
+
+      <thead>
+        <tr>
+          <th>Teacher:</th>
+          <th>Branch</th>
+          <th>Level</th>
+          <th>Frequency</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% @pages.each do |page| %>
+
+            <tr>
+            <span class="mytooltip tooltip-effect-1">
+              <td class="tooltip-item"><%= link_to page.teacher, page_path(page) %></td>
+            <span class="tooltip-content clearfix">
+            </span>
+            </span>
+
+              <td><%= page.branch %></td>
+              <td><%= page.level %></td>
+              <td><%= page.frequency %></td>
+
+                <%# if policy(page).edit? %>
+                <%# if current_user.role == 'admin' %>
+                  <td><%= link_to "Edit", edit_page_path(page), class:"btn btn-outline-primary" %></td>
+                <%# end %>
+                <%# end %>
+
+                <%# if policy(page).destroy? %>
+                <%# if current_user.role == 'admin' %>
+                  <td><%= link_to "Delete",
+                                  page,
+                                  method: :delete,
+                                  data: { confirm: "Are you sure?" }, class:"btn btn-outline-primary" %></td>
+                <%# end %>
+
+                <%# end %>
+            </tr>
+
+
+          <% end %>
+        </tbody>
+        <tr>
+      </table>
+    </div>
